@@ -2,23 +2,20 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
   color: #333;
-  padding: 40px 20px;
   margin: 0;
+  padding: 40px 20px;
 }
 
-/* Контейнер — оборачивает интерфейс и инструкцию */
+/* Контейнер с двумя колонками */
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  max-width: 1200px;
+  width: 1200px;
   margin: 0 auto;
 }
 
+/* Левая колонка */
 .instructions {
-  flex: 1 1 300px;
-  max-width: 300px;
+  float: left;
+  width: 300px;
   background-color: #eef2f5;
   padding: 20px;
   border-radius: 8px;
@@ -35,14 +32,14 @@ body {
   padding-left: 20px;
 }
 
+/* Правая колонка */
 .app {
-  flex: 1 1 600px;
-  max-width: 800px;
-  min-width: 300px;
+  margin-left: 400px; /* 300px + 40px отступ */
+  max-width: 860px;
   text-align: center;
 }
 
-/* Кнопки и поля */
+/* Элементы интерфейса */
 input[type="file"],
 input[type="number"] {
   padding: 6px 10px;
@@ -76,20 +73,4 @@ canvas {
   background-color: #fff;
   max-width: 100%;
   height: auto;
-}
-
-/* Адаптация под узкие экраны */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .instructions {
-    max-width: 100%;
-  }
-
-  .app {
-    max-width: 100%;
-  }
 }
