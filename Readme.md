@@ -8,7 +8,7 @@
 
 1. Выгрузите данные переписки телеграм в виде json
 
-2. Перейдите на сайт[https://tirkirill.github.io/TelegramWordsCloud/]
+2. Перейдите на [сайт](https://tirkirill.github.io/TelegramWordsCloud/)
 
 3. Загрузите JSON-файл с экспортом сообщений из Telegram с помощью кнопки «Выбрать файл» (result.json в папке выгрузки)
 
