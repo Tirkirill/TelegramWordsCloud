@@ -1,24 +1,48 @@
-/* style.css */
-
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
   color: #333;
-  text-align: center;
   padding: 40px 20px;
   margin: 0;
 }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
+/* Контейнер — оборачивает интерфейс и инструкцию */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-label {
-  font-size: 16px;
-  margin-right: 8px;
+.instructions {
+  flex: 1 1 300px;
+  max-width: 300px;
+  background-color: #eef2f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 15px;
 }
 
+.instructions h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.instructions ol {
+  padding-left: 20px;
+}
+
+.app {
+  flex: 1 1 600px;
+  max-width: 800px;
+  min-width: 300px;
+  text-align: center;
+}
+
+/* Кнопки и поля */
 input[type="file"],
 input[type="number"] {
   padding: 6px 10px;
@@ -36,7 +60,7 @@ button {
   font-size: 15px;
   border-radius: 4px;
   cursor: pointer;
-  margin: 10px;
+  margin: 10px 5px;
   transition: background-color 0.3s;
 }
 
@@ -54,33 +78,18 @@ canvas {
   height: auto;
 }
 
-.container {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
+/* Адаптация под узкие экраны */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.instructions {
-  max-width: 210px;
-  text-align: left;
-  font-size: 13px;
-  background-color: #eef2f5;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+  .instructions {
+    max-width: 100%;
+  }
 
-.instructions h2 {
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-.instructions ol {
-  padding-left: 20px;
-}
-
-.app {
-  max-width: 800px;
+  .app {
+    max-width: 100%;
+  }
 }
