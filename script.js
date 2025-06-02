@@ -22,9 +22,22 @@ async function processFile() {
         "про", "же", "но", "их", "бы", "нас", "том", "со", "них", "нас", "ее", "оно",
         "те", "ее", "эта", "во", "тот", "вся", "ним", "весь", "вам", "нам", "вас", "таких", "нашего",
         "эти", "ни", "тем", "им", "ли", "эту", "уж", "ваш", "под", "наш",
-        "своей", "мои", "одна", "один", "наши", "мой", "свою", ""
+        "своей", "мои", "одна", "один", "наши", "мой", "свою", "ему", "нибудь", "ко", "ей", "ее", "который",
+        "которой", "столько", "своих"
 
     ])
+
+    const wordCountInput = document.getElementById('wordCountInput');
+    let wordCount = parseInt(wordCountInput?.value, 10);
+
+    if (isNaN(wordCount) || wordCount < 100 || wordCount > 1000) {
+        alert("Введите корректное количество слов от 100 до 1000");
+        wordCount = 100;
+        wordCountInput.value = wordCount;
+        return;
+    }
+
+    wordCount = Math.max(100, Math.min(500, wordCount));
 
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
@@ -59,18 +72,21 @@ async function processFile() {
 
     const maxFreq = Math.max(...Object.values(frequencies));
 
-    // Нормализуем частоты от 1 до 10
     const list = Object.entries(frequencies)
     .map(([word, freq]) => [word, Math.round((freq / maxFreq) * 10)])
-    .sort((a, b) => b[1] - a[1]);
+    .sort((a, b) => b[1] - a[1]).filter(item => item[1] > 0);
 
-    const wordCount = 250;
+    wordCount = list.length;
+
+    let weightFactor = 1000 / wordCount
+    weightFactor = Math.max(8, Math.min(60, Math.floor((canvas.width * canvas.height) / (wordCount * 800))));
 
     WordCloud(document.getElementById('canvas'), {
         list: list.slice(0, wordCount),
         backgroundColor: 'white',
-        weightFactor: 0.02 * wordCount,
-        drawOutOfBound: false
+        weightFactor: weightFactor,
+        drawOutOfBound: false,
+        gridSize: 5
     });
 
 }

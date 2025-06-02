@@ -5,15 +5,26 @@
   <title>Облако слов из Telegram JSON</title>
   <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.1.0/src/wordcloud2.js"></script>
   <script defer src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
+
   <h1>Облако слов из переписки Telegram</h1>
 
-  <input type="file" id="fileInput">
-  <button onclick="processFile()">Создать облако слов</button>
+  <canvas id="canvas" width="1200" height="400"></canvas>
 
-  <canvas id="canvas" width="800" height="400"></canvas>
+  <div>
+    <input type="file" id="fileInput">
+  </div>
+
+  <div>
+    <label for="wordCountInput">Количество слов:</label>
+    <input type="number" id="wordCountInput" value="250" min="10" max="1000" step="10">
+  </div>
+
+  <div>
+    <button onclick="processFile()">Создать облако слов</button>
+  </div>
 
 </body>
 </html>
