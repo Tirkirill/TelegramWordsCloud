@@ -46,8 +46,21 @@ async function processFile() {
         return;
     }
 
-    const text = await file.text();
-    const json = JSON.parse(text);
+    let json;
+
+    try {
+        const text = await file.text();
+        json = JSON.parse(text);
+    } catch (e) {
+        alert("Ошибка чтения файла. Убедитесь, что это корректный JSON-файл.");
+        return;
+    }
+
+    if (!json.messages || !Array.isArray(json.messages)) {
+        alert("Файл не похож на экспорт из Telegram. Убедитесь, что вы загрузили правильный JSON.");
+        return;
+    }
+    
     const messages = json.messages || [];
 
     // Собираем текст из всех сообщений
@@ -89,4 +102,12 @@ async function processFile() {
         gridSize: 5
     });
 
+}
+
+async function saveCanvasImage() {
+    const canvas = document.getElementById('canvas');
+    const link = document.createElement('a');
+    link.download = 'wordcloud.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
 }

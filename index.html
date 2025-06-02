@@ -9,21 +9,40 @@
 </head>
 <body>
 
-  <h1>Облако слов из переписки Telegram</h1>
 
-  <canvas id="canvas" width="1200" height="400"></canvas>
+  <div class="container">
+    <!-- Левая колонка — подсказка -->
+    <aside class="instructions">
+      <h2>Как экспортировать чат из Telegram:</h2>
+      <ol>
+        <li>Выберите чат (личный или групповой)</li>
+        <li>Нажмите на три точки в правом верхнем углу чата → <b>«Экспорт истории чата»</b></li>
+        <li>Выберите формат <b>JSON</b></li>
+        <li>Укажите папку и начните экспорт</li>
+        <li>После завершения получите папку. В ней будет JSON-файл result.json. Его и нужно загрузить на сайт</li>
+      </ol>
+    </aside>
 
-  <div>
-    <input type="file" id="fileInput">
-  </div>
+    <!-- Правая часть — интерфейс -->
+    <main class="app">
+      <h1>Облако слов из переписки Telegram</h1>
 
-  <div>
-    <label for="wordCountInput">Количество слов:</label>
-    <input type="number" id="wordCountInput" value="250" min="10" max="1000" step="10">
-  </div>
+      <canvas id="canvas" width="1200" height="400"></canvas>
 
-  <div>
-    <button onclick="processFile()">Создать облако слов</button>
+      <div>
+        <input type="file" id="fileInput" accept=".json,application/json">
+      </div>
+
+      <div>
+        <label for="wordCountInput">Количество слов:</label>
+        <input type="number" id="wordCountInput" value="250" min="10" max="1000" step="10">
+      </div>
+
+      <div>
+        <button onclick="processFile()">Создать облако слов</button>
+        <button onclick="saveCanvasImage()">Сохранить</button>
+      </div>
+    </main>
   </div>
 
 </body>

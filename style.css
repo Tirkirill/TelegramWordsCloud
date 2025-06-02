@@ -53,3 +53,34 @@ canvas {
   max-width: 100%;
   height: auto;
 }
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.instructions {
+  max-width: 210px;
+  text-align: left;
+  font-size: 13px;
+  background-color: #eef2f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.instructions h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.instructions ol {
+  padding-left: 20px;
+}
+
+.app {
+  max-width: 800px;
+}
