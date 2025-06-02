@@ -26,7 +26,7 @@
 
 В меню экспорта выберите формат JSON
 
-![alt text](readme_images\image.png)
+![alt text](readme_images/image.png)
 
 Укажите папку для сохранения и начните экспорт.
 
