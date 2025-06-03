@@ -80,26 +80,36 @@ async function processFile() {
     for (const word of words) {
     if (word.length < minWordLength) continue;
     if (stopWords.has(word)) continue;
-    frequencies[word] = (frequencies[word] || 0) + 1;
+        frequencies[word] = (frequencies[word] || 0) + 1;
     }
 
     const maxFreq = Math.max(...Object.values(frequencies));
-
     const list = Object.entries(frequencies)
-    .map(([word, freq]) => [word, Math.round((freq / maxFreq) * 10)])
-    .sort((a, b) => b[1] - a[1]).filter(item => item[1] > 0);
+        .map(([word, freq]) => [word, Math.round((freq / maxFreq) * 10)])
+        .sort((a, b) => b[1] - a[1])
+        .map(([word, freq]) => [word, Math.max(freq, 1)]);
 
-    wordCount = list.length;
+    const words_length = Math.min(list.length, wordCount);
+    const sum_weight = list.slice(0, words_length)
+        .map(([word, freq]) => freq)
+        .reduce((partialSum, a) => partialSum + a, 0);
 
-    let weightFactor = 1000 / wordCount
-    weightFactor = Math.max(8, Math.min(60, Math.floor((canvas.width * canvas.height) / (wordCount * 800))));
+    const canvas = document.getElementById('canvas');
+    const totalArea = canvas.width * canvas.height;
+    const estimatedWordArea = words_length * 150;
+    const weightFactor = Math.max(1.0, Math.min(10.0, Math.sqrt(totalArea / estimatedWordArea) * Math.sqrt(sum_weight / words_length) * 2.5));
+    const gridSize = Math.max(3, Math.min(5, Math.round(canvas.width / 100)));
 
-    WordCloud(document.getElementById('canvas'), {
-        list: list.slice(0, wordCount),
+    console.log("sum_weight:", sum_weight);
+    console.log("weightFactor:", weightFactor);
+    console.log("gridSize:", gridSize);
+
+    WordCloud(canvas, {
+        list: list.slice(0, words_length),
         backgroundColor: 'white',
         weightFactor: weightFactor,
         drawOutOfBound: false,
-        gridSize: 5
+        gridSize: gridSize
     });
 
 }
