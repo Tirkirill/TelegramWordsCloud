@@ -74,3 +74,8 @@ canvas {
   max-width: 100%;
   height: auto;
 }
+
+input[type="range"] {
+  width: 200px;
+  margin: 10px;
+}
